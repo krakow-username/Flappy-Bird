@@ -10,10 +10,14 @@ int ran3;
 int ran4;
 int timer2 = 2000;
 int direction;
+int xani =40;
+boolean startAniIn = true;
+boolean startAniOut = false;
+int backX;
 
 void game(){
-  background(255,255,0);
-  
+  backX = (int)map(bx,0,width,-70,70);
+  image(back,width/2 - backX,height/2);
   if (bvy < 8){
   bvy = bvy + gra;
   }
@@ -23,10 +27,10 @@ void game(){
   timer2 = timer2 - 1;
   bx = bx + bvx;
   
-  for (int i = 0; i <18; i++){
+  for (int i = 0; i <(width/40); i++){
     if( i == ran1 || i == ran2 || i == ran3 || i == ran4 ){
-    spike(0,spikeY[i]);
-    spike(width,spikeY[i]);
+    spike(0 - xani,spikeY[i]);
+    spike(width +xani,spikeY[i]);
     hitbox(0,spikeY[i],50);
     hitbox(width,spikeY[i],50);
     }
@@ -38,10 +42,27 @@ void game(){
    direction = -1; 
   }
   
+  if (startAniIn == true){
+    if (xani >0){
+      xani--;
+  } else {
+    startAniIn = false;
+  }
+  
+  
+}
+if (startAniOut == true){
+    if (xani < 40){
+      xani++;
+  } else {
+    startAniOut = false;
+  }
+}
 }
 
 void hitbox(int x, int y, float r){
-  //hitbox visualiser
+  
+ // hitbox visualiser
   //pushMatrix();
   //translate(x,y+20);
   //if (x < width/2){
@@ -53,13 +74,18 @@ void hitbox(int x, int y, float r){
   //}
   //popMatrix();
   
+
+  if ((by + r/2) >=   height){
+   mode = GAMEOVER;
+  }
+  
   if (x < width/2){
   if( dist(bx,by,x +20,y) <= (5 + r/2)){
-     mode++;
+     mode = GAMEOVER;
   }
   } else{
     if( dist(bx,by,x-20,y) <= (10 + r/2)){
-     mode++;
+     mode = GAMEOVER;
   }
   }
 }
@@ -89,6 +115,7 @@ void bird(float x, float y, float r){
    }
    popMatrix();
   if (x + r/2 > width || x - r/2 < 0){
+    startAniOut = true;
     timer2 = 50;
    bvx = -bvx; 
    
@@ -101,6 +128,7 @@ void bird(float x, float y, float r){
     ran3 = (int)(random(0,18));
     ran4 = (int)(random(0,18));
     timer2 = 2000;
+    startAniIn = true;
    }
 }
 
