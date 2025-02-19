@@ -4,11 +4,13 @@ final int INTRO = 0;
 final int GAME = 1;
 final int PAUSE = 2;
 final int GAMEOVER = 3;
-PImage al1, al2, back,intro, logo, aqua, version, version2, aqua2;
+PImage al1, al2, back,intro, logo, aqua, version, version2, aqua2, start;
 
 void setup(){
   size(750,1000);
   mode = INTRO;
+  start = loadImage("start.png");
+  start.resize(((width*2)/3),0);
   aqua = loadImage("aquamarine.png");
   aqua.resize(((width*2)/3),0);
   aqua2 = loadImage("aqua2.png");
