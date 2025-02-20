@@ -8,6 +8,7 @@ int ran1;
 int ran2;
 int ran3;
 int ran4;
+int ran5;
 int timer2 = 2000;
 int direction;
 int xani =40;
@@ -28,7 +29,7 @@ void game(){
   bx = bx + bvx;
   
   for (int i = 0; i <(width/40); i++){
-    if( i == ran1 || i == ran2 || i == ran3 || i == ran4 ){
+    if( i == ran1 || i == ran2 || i == ran3 || i == ran4 || i == ran5 ){
     spike(0 - xani,spikeY[i]);
     spike(width +xani,spikeY[i]);
     hitbox(0,spikeY[i],50);
@@ -76,16 +77,20 @@ void hitbox(int x, int y, float r){
   
 
   if ((by + r/2) >=   height){
-   mode = GAMEOVER;
+   mode = DEAD;
+  }
+  
+   if ((by - r/2) <=   0){
+   mode = DEAD;
   }
   
   if (x < width/2){
   if( dist(bx,by,x +20,y) <= (5 + r/2)){
-     mode = GAMEOVER;
+     mode = DEAD;
   }
   } else{
     if( dist(bx,by,x-20,y) <= (10 + r/2)){
-     mode = GAMEOVER;
+     mode = DEAD;
   }
   }
 }
@@ -104,7 +109,7 @@ void spike(float x, float y){
 void bird(float x, float y, float r){
   pushMatrix();
   translate(x,y);
-  circle(0,0,r);
+  //circle(0,0,r);
   //image(al1,0,0);
   pushMatrix();
    scale(direction,1);
@@ -127,11 +132,16 @@ void bird(float x, float y, float r){
     ran2 = (int)(random(0,18));
     ran3 = (int)(random(0,18));
     ran4 = (int)(random(0,18));
+    ran5 = (int)(random(0,18));
     timer2 = 2000;
     startAniIn = true;
    }
 }
 
 void gameClicks(){
-
+  if (timer <1){
+      bvy = bvy - 20;
+      timer = 30;
+     // }
+    }
 }

@@ -1,4 +1,5 @@
 int s = 0;
+int f = 0;
 
 void intro(){
   image(intro,(width/2),height/2);
@@ -17,8 +18,12 @@ void intro(){
   popMatrix();
   tint(255,255);
   
+  image(gif[f],width*3/4,height*4/5);
+  if (frameCount % 4 == 0) f++;
+  if (f > numOfFrames -1){ f = 0;}
+  
 }
 
 void introClicks(){
- 
+   mode = GAME;
 }
