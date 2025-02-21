@@ -15,6 +15,8 @@ int xani =40;
 boolean startAniIn = true;
 boolean startAniOut = false;
 int backX;
+int score = 0;
+int limit = 3;
 
 void game(){
   backX = (int)map(bx,0,width,-70,70);
@@ -28,12 +30,15 @@ void game(){
   timer2 = timer2 - 1;
   bx = bx + bvx;
   
-  for (int i = 0; i <(width/40); i++){
-    if( i == ran1 || i == ran2 || i == ran3 || i == ran4 || i == ran5 ){
+
+  for (int i = 0; i <(height/40); i++){
+    for (int j =0; j<limit; j++){
+    if( i == ran[j] ){
     spike(0 - xani,spikeY[i]);
     spike(width +xani,spikeY[i]);
     hitbox(0,spikeY[i],50);
     hitbox(width,spikeY[i],50);
+    }
     }
   }
   
@@ -123,18 +128,27 @@ void bird(float x, float y, float r){
     startAniOut = true;
     timer2 = 50;
    bvx = -bvx; 
+   score++;
+   println(score);
    
   }
   popMatrix();
     
      if (timer2 < 1){
-    ran1 = (int)(random(0,18));
-    ran2 = (int)(random(0,18));
-    ran3 = (int)(random(0,18));
-    ran4 = (int)(random(0,18));
-    ran5 = (int)(random(0,18));
+    //ran1 = (int)(random(0,height/40));
+    //ran2 = (int)(random(0,height/40));
+    //ran3 = (int)(random(0,height/40));
+    //ran4 = (int)(random(0,height/40));
+    //ran5 = (int)(random(0,height/40));
+    
+    for(int i =0; i<20;i++){
+      ran[i] = (int)(random(0,(height/40)));
+    }
     timer2 = 2000;
     startAniIn = true;
+    if (limit < 20){
+    limit = limit + 1;
+    }
    }
 }
 

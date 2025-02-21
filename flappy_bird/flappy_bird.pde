@@ -5,13 +5,19 @@ final int GAME = 1;
 final int PAUSE = 2;
 final int GAMEOVER = 3;
 final int DEAD = 4;
-PImage al1, al2, back,intro, logo, aqua, version, version2, aqua2, start, deadtaria;
+PImage al1, al2, back,intro, logo, aqua, version, version2, aqua2, start, deadtaria, shedinja, lose;
 PImage[] gif;
 int numOfFrames =60;
+int[] ran;
+PFont font;
 
 void setup(){
   size(750,1000);
-  mode = INTRO;
+  mode = GAMEOVER;
+  font = loadFont("PixelSport-nRVRV.ttf");
+  lose = loadImage("lose.png");
+  shedinja = loadImage("shedinja.png");
+  shedinja.resize(300,300);
   deadtaria = loadImage("deadtaria.png");
   deadtaria.resize(60,60);
   start = loadImage("start.png");
@@ -37,14 +43,18 @@ void setup(){
 
   bx = width/2;
   by = height/2;
-  ran1 = (int)(random(0,(width/40)));
-  ran2 = (int)(random(0,(width/40)));
-  ran3 = (int)(random(0,(width/40)));
-  ran4 = (int)(random(0,(width/40)));
-  ran5 = (int)(random(0,(width/40)));
+  //ran1 = (int)(random(0,(height/40)));
+  //ran2 = (int)(random(0,(height/40)));
+  //ran3 = (int)(random(0,(height/40)));
+  //ran4 = (int)(random(0,(height/40)));
+  //ran5 = (int)(random(0,(height/40)));
+  ran = new int[20];
+  for(int i =0; i<20;i++){
+   ran[i] = (int)(random(0,(height/40)));
+  }
   
-  spikeY = new int[(width/40)];
-  for (int i = 0; i <(width/40); i++){
+  spikeY = new int[(height/40)];
+  for (int i = 0; i <(height/40); i++){
     spikeY[i] = i*40;
   }
   
