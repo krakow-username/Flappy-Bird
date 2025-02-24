@@ -68,7 +68,7 @@ if (startAniOut == true){
 
 void hitbox(int x, int y, float r){
   
- // hitbox visualiser
+  ////hitbox visualiser
   //pushMatrix();
   //translate(x,y+20);
   //if (x < width/2){
@@ -101,14 +101,27 @@ void hitbox(int x, int y, float r){
 }
 
 void spike(float x, float y){
-  pushMatrix();
-  translate(x,y);
+  
   if (x < width/2){
-  triangle(0,0,0,40,30,20);
-  } else {
-    triangle(0,0,0,40,-30,20);
-  }
+    pushMatrix();
+  translate(x +10,y +20);
+  //triangle(0,0,0,40,30,20);
+  pushMatrix();
+  rotate(0.5*PI);
+  image(Toxapexs,0,0);
   popMatrix();
+  popMatrix();
+  } else {
+    pushMatrix();
+  translate(x -10,y +20);
+    //triangle(0,0,0,40,-30,20);
+    pushMatrix();
+    rotate(1.5*PI);
+    image(Toxapexs,0,0);
+    popMatrix();
+    popMatrix();
+  }
+  
 }
 
 void bird(float x, float y, float r){

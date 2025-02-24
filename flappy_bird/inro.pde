@@ -25,5 +25,17 @@ void intro(){
 }
 
 void introClicks(){
+  timer2 = 2000;
+  startAniIn = true;
+  startAniOut = false;
+  score = 0;
+  limit = 3;
+  xani =40;
+  gra = 0.5;
+  bx = width/2;
+  by = height/2;
+  deadV = -15;
+  direction = 1;
+  bvx = 2;
    mode = GAME;
 }

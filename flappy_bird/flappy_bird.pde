@@ -1,20 +1,41 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
 //mode framwork
+
+//minim
+Minim minim;
+AudioPlayer lake;
+
 int mode;
 final int INTRO = 0;
 final int GAME = 1;
 final int PAUSE = 2;
 final int GAMEOVER = 3;
 final int DEAD = 4;
-PImage al1, al2, back,intro, logo, aqua, version, version2, aqua2, start, deadtaria, shedinja, lose;
+PImage al1, al2, back,intro, logo, aqua, version, version2, aqua2, start, deadtaria, shedinja, lose, Toxapexs;
 PImage[] gif;
 int numOfFrames =60;
 int[] ran;
 PFont font;
+//String[] PixelSport = PFont.list();
 
 void setup(){
+  
+  minim = new Minim(this);
+  lake = minim.loadFile("ytmp3free.cc_lake-pokemon-diamond-pearl-music-extended-hd-youtubemp3free.org.mp3");
+  lake.play();
+  
   size(750,1000);
-  mode = GAMEOVER;
-  font = loadFont("PixelSport-nRVRV.ttf");
+  mode = INTRO;
+  //font = loadFont("PixelSport-nRVRV.ttf");
+  font = createFont("PixelSport-nRVRV.ttf",100);
+  Toxapexs = loadImage("Toxapexs.png");
+  Toxapexs.resize(50,50);
   lose = loadImage("lose.png");
   shedinja = loadImage("shedinja.png");
   shedinja.resize(300,300);
